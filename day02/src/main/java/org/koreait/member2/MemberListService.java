@@ -1,4 +1,4 @@
-package org.koreait.member;
+package org.koreait.member2;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -7,11 +7,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MemberListService {
 	
 	@Autowired
-	@Qualifier("mdao")
 	private Optional<MemberDao> opt;
 	
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");

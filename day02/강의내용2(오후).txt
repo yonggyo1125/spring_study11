@@ -1,0 +1,94 @@
+스프링 DI 설정 및 사용
+1. 스프링을 이용한 객체 조립과 사용
+2. DI 방식 1 : 생성자 방식
+3. DI 방식2 : 세터 메서드 방식
+
+애노테이션
+1. @Configuration 
+	- 관리 객체 설정 클래스 
+2. @Bean
+	- 관리 객체 
+	
+3. @Autowired 
+	- 자동 의존성 주입 
+	- 멤버 변수
+	- setter 메서드의 매개변수
+	- 생성자의 매개변수 주입
+	- Optional
+	
+	1.8
+	
+	class Optional<T> {
+		...
+		
+		T value;
+		
+		...
+		
+	}
+	
+	
+	class Integer {
+		...
+		int value;
+		..
+	}
+	
+	
+4. @Import
+	- 설정 클래스에서 다른 설정 클래스를 포함 
+
+
+의존 자동 주입
+1. @Autowired 애노테이션을 이용한 의존 자동 주입
+2. 일치하는 빈이 없는 경우
+3. @Qualifier 애노테이션을 이용한 의존 객체 선택
+4. 빈 이름과 기본 한정자
+
+5. @Autowired 애노테이션의 필수 여부
+required = true -> 의존객체가  반드시 있어야 되는 경우
+				    -> 없으면 오류 발생 
+					
+			- false -> 의존 객체가 없으면,  의존하고 있는 setter 메서드 호출 X
+
+
+@Nullable 
+
+
+컴포넌트 스캔
+1. @ComponentScan
+	
+	- 패키지 범위와 하위 패키지의 모든 클래스 검색 범위 
+	
+	하기 애노테이션이 정의된 클래스는 자동적으로 스프링 관리 객체(Bean)으로 등록
+	- @Component 
+	- @Service 
+	- @Controller 
+	- @Configuration 
+	- @Repository 
+	- @Aspect 
+	
+
+2. @Component 
+3. 컴포넌트 스캔에 따른 충돌 처리
+	-  excludeFilters
+			@Filter 
+				- FilterType
+					- ASPECTJ
+					- REGEX
+					- ANNOTION 
+					- ASSIGNABLE_TYPE
+				
+	
+빈 라이프 사이클과 범위
+1. 객체 생성 -> 의존 설정 -> 초기화 -> 소멸
+2. InitializingBean
+3. DisposableBean
+
+4. @Bean
+	- initMethod 
+	- destroyMethod
+	
+
+빈 객체의 생성과 관리 범위
+1. @Scope

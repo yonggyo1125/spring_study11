@@ -1,15 +1,20 @@
-package org.koreait.member;
+package org.koreait.member2;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.koreait.member.AppCtx;
+import org.koreait.member.Member;
+import org.koreait.member.MemberListService;
+import org.koreait.member.MemberRegisterService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Main2 {
+public class Main1 {
+
 	public static void main(String[] args) {
-		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppCtx.class);
 		
-		MemberRegisterService registerService = ctx.getBean(MemberRegisterService.class);
+		MemberRegisterService registerService = ctx.getBean("memberRegisterService", MemberRegisterService.class);
 		Member member = new Member();
 		member.setUserId("user01");
 		member.setUserPw("123456");
@@ -24,5 +29,7 @@ public class Main2 {
 		}
 		
 		ctx.close();
+
 	}
+
 }

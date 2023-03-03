@@ -1,0 +1,12 @@
+스프링 -> 스프링 컨테이너
+IOC(Inversion Of Control) : 제어의 역전
+
+mvn archetype:generate
+	groupId : org.koreait 
+	artifactId : day02
+	
+
+스프링 DI(Dependency Injection - 의존주입)
+1. 의존이란?
+2. DI를 통한 의존 처리
+3. 객체 조립기

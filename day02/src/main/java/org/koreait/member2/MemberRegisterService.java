@@ -1,8 +1,10 @@
-package org.koreait.member;
+package org.koreait.member2;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service // MemberRegisterService -> memberRegisterService
 public class MemberRegisterService {
 	
 	
@@ -20,7 +22,6 @@ public class MemberRegisterService {
 	}
 	
 	@Autowired
-	@Qualifier("mdao")
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
