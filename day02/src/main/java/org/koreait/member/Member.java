@@ -7,6 +7,7 @@ public class Member {
 	private String userPw;
 	private String userNm;
 	private LocalDateTime regDt;
+	private String regDtStr;
 	
 	public String getUserId() {
 		return userId;
@@ -32,9 +33,18 @@ public class Member {
 	public void setRegDt(LocalDateTime regDt) {
 		this.regDt = regDt;
 	}
+	
+	
+	
+	public String getRegDtStr() {
+		return regDtStr;
+	}
+	public void setRegDtStr(String regDtStr) {
+		this.regDtStr = regDtStr;
+	}
 	@Override
 	public String toString() {
-		return "Member [userId=" + userId + ", userPw=" + userPw + ", userNm=" + userNm + ", regDt=" + regDt + "]";
+		return "Member [userId=" + userId + ", userPw=" + userPw + ", userNm=" + userNm + ", regDt=" + regDtStr + "]";
 	}
 	
 	
