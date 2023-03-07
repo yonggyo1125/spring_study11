@@ -4,14 +4,13 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.core.annotation.Order;
 
+@Order(2)
 @Aspect
 public class CalculatorProxy {
-
-	@Pointcut("execution(* org.koreait.aopex2..*(..))")
-	public void calculatorTarget() {}
 	
-	@Around("calculatorTarget()")
+	@Around("CommonPointcut.calculatorTarget()")
 	public Object calcu(ProceedingJoinPoint joinPoint) throws Throwable {
 		
 		long startTime = System.nanoTime(); // 공통 기능

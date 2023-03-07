@@ -6,12 +6,17 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.koreait.aopex2.*;
 
 @Configuration
-@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy(proxyTargetClass=true)
 public class AppCtx {
 	
 	@Bean
 	public CalculatorProxy caculatorProxy() {
 		return new CalculatorProxy();
+	}
+	
+	@Bean
+	public CachedProxy cachedProxy() {
+		return new CachedProxy();
 	}
 	
 	@Bean
