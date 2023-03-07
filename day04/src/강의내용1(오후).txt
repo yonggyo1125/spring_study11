@@ -1,0 +1,28 @@
+AOP 프로그래밍
+프록시(Proxy - 대리하다)
+
+
+AOP
+1. @Aspect  : 공통 기능이 있는 클래스
+
+	
+2. @Pointcut : 공통기능을 적용할 범위
+						AsepectJ -> Ant Pattern 
+
+3. @Around : 공통 기능을 수행할 메서드
+
+
+4. ProceedingJoinPoint
+		Object proceed() : 핵심 기능 수행 
+		Object[] getArgs() : 
+		Signature getSignature()
+			
+		Object getTarget() : 핵심기능을 호출한 원 객체
+	
+5. 프록시 생성방식
+6. execution 명시자 표현식
+7. Advice 적용 순서
+	@Order
+
+	
+8. @Around의 Pointcut 설정과 @Pointcut 재사용
