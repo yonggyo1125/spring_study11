@@ -1,6 +1,11 @@
 package org.koreait.member;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,6 +25,24 @@ public class MemberDao {
 											member.getUserNm());
 		return cnt > 0;
 		
+	}
+	
+	public List<Member> gets() {
+		String sql = "SELECT * FROM member";
+		List<Member> members = jdbcTemplate.query(sql, new RowMapper<Member>() {
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Member member = new Member();
+				member.setUserNo(rs.getInt("userNo"));
+				member.setUserId(rs.getString("userId"));
+				member.setUserPw(rs.getString("userPw"));
+				member.setUserNm(rs.getString("userNm"));
+				member.setRegDt(rs.getTimestamp("regDt").toLocalDateTime());
+				
+				return member;
+			}
+			
+		});
 	}
 }
 

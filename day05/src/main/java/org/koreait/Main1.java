@@ -11,9 +11,9 @@ public class Main1 {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppCtx.class);
 		MemberDao memberDao = ctx.getBean(MemberDao.class);
 		Member member = new Member();
-		member.setUserId("user01");
+		member.setUserId("user02");
 		member.setUserPw("123456");
-		member.setUserNm("사용자01");
+		member.setUserNm("사용자02");
 		
 		boolean result = memberDao.insert(member);
 		System.out.println(result);
