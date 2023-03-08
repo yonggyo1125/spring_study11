@@ -29,20 +29,22 @@ public class MemberDao {
 	
 	public List<Member> gets() {
 		String sql = "SELECT * FROM member";
-		List<Member> members = jdbcTemplate.query(sql, new RowMapper<Member>() {
-			@Override
-			public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Member member = new Member();
-				member.setUserNo(rs.getInt("userNo"));
-				member.setUserId(rs.getString("userId"));
-				member.setUserPw(rs.getString("userPw"));
-				member.setUserNm(rs.getString("userNm"));
-				member.setRegDt(rs.getTimestamp("regDt").toLocalDateTime());
-				
-				return member;
-			}
-			
-		});
+		List<Member> members = jdbcTemplate.query(sql,this::mapper);
+		
+		return members;
+	}
+	
+
+	
+	public Member mapper(ResultSet rs, int num) throws SQLException {
+		Member member = new Member();
+		member.setUserNo(rs.getInt("userNo"));
+		member.setUserId(rs.getString("userId"));
+		member.setUserPw(rs.getString("userPw"));
+		member.setUserNm(rs.getString("userNm"));
+		member.setRegDt(rs.getTimestamp("regDt").toLocalDateTime());
+		
+		return member;
 	}
 }
 
