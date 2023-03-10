@@ -4,7 +4,7 @@
 	<dl>
 		<dt>아이디</dt>
 		<dd>
-			<input type="text" name="userId">
+			<input type="text" name="userId" value="${member.userId}">
 		</dd>
 	</dl>
 	<dl>
@@ -22,7 +22,7 @@
 	<dl>
 		<dt>회원명</dt>
 		<dd>
-			<input type="text" name="userNm">
+			<input type="text" name="userNm" value="${member.userNm}">
 		</dd>
 	</dl>
 	<div>

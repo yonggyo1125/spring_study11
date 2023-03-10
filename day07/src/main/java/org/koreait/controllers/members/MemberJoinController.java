@@ -2,6 +2,7 @@ package org.koreait.controllers.members;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +17,9 @@ public class MemberJoinController {
 	}
 	
 	@PostMapping
-	public String joinPs() {
-	
-		return null;
+	public String joinPs(@ModelAttribute("member") MemberJoin member) {
+		System.out.println(member);
+		
+		return "member/join";
 	}
 }
