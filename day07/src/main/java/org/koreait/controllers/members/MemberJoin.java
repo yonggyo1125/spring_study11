@@ -1,12 +1,26 @@
 package org.koreait.controllers.members;
 
+import java.util.List;
+
 public class MemberJoin {
+	private String memberType;
 	private String userId;
 	private String userPw;
 	private String userPwRe;
 	private String userNm;
-	private boolean agree;
+	private List<String> hobby;
+	private List<String> editor;
 	
+ 	private boolean agree;
+	
+	public String getMemberType() {
+		return memberType;
+	}
+
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
+
 	public String getUserId() {
 		return userId;
 	}
@@ -39,6 +53,22 @@ public class MemberJoin {
 		this.userNm = userNm;
 	}
 	
+	public List<String> getHobby() {
+		return hobby;
+	}
+
+	public void setHobby(List<String> hobby) {
+		this.hobby = hobby;
+	}
+
+	public List<String> getEditor() {
+		return editor;
+	}
+
+	public void setEditor(List<String> editor) {
+		this.editor = editor;
+	}
+
 	public boolean isAgree() {
 		return agree;
 	}
@@ -49,7 +79,8 @@ public class MemberJoin {
 
 	@Override
 	public String toString() {
-		return "MemberJoin [userId=" + userId + ", userPw=" + userPw + ", userPwRe=" + userPwRe + ", userNm=" + userNm
-				+ ", agree=" + agree + "]";
+		return "MemberJoin [memberType=" + memberType + ", userId=" + userId + ", userPw=" + userPw + ", userPwRe="
+				+ userPwRe + ", userNm=" + userNm + ", hobby=" + hobby + ", editor=" + editor + ", agree=" + agree
+				+ "]";
 	}
 }
