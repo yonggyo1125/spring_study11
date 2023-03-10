@@ -17,8 +17,7 @@ public class MemberJoinController {
 	}
 	
 	@PostMapping
-	public String joinPs(@ModelAttribute("member") MemberJoin member) {
-		System.out.println(member);
+	public String joinPs(MemberJoin member) {
 		
 		return "member/join";
 	}
