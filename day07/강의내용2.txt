@@ -1,0 +1,29 @@
+스프링 MVC : 메시지, 커맨드 객체 검증
+
+<spring:message> 태그로 메시지 출력하기
+1. 설정 및 사용
+MessageSource messageSource()
+
+
+2. 다국어 지원 위한 메시지 파일
+commons_ko.properties
+commons_en.properties 
+commons_zn.properties
+
+커맨드 객체의 값 검증과 에러 메시지 처리
+1. 커맨드 객체 검증과 에러 코드 지정하기
+	Validator 인터페이스 
+		
+		
+2. Errors와 ValidationUtils 클래스의 주요 메서드
+
+3. <form:errors> 태그의 주요 속성
+- path
+- element
+- delimiter 
+
+글로벌 범위 Validator와 컨트롤러 범위 Validator
+1. 글로벌 범위 Validator 설정과 @Valid 애노테이션
+2. @InitBinder 애노테이션을 이용한 컨트롤러 범위 Validator
+
+3. Bean Validation을 이용한 값 검증 처리

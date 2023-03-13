@@ -1,0 +1,16 @@
+1. 컨트롤러 구현 없는 경로 매핑
+-  컨트롤러 빈 X -> 페이지 URL + 뷰
+
+2. 커맨드 객체 : 중첩 · 콜렉션 프로퍼티
+3. Model을 통해 컨트롤러에서 뷰에 데이터 전달하기
+
+4.주요 폼 태그 
+	
+
+5. 리다이렉트
+HttpServletResponse 
+	: sendRedirect 
+		-> 응답 헤더 Location: 주소
+
+
+	redirect:주소
