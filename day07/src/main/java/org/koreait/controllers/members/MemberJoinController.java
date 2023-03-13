@@ -26,6 +26,7 @@ public class MemberJoinController {
 
 		model.addAttribute("editors", getEditors());
 		model.addAttribute("memberTypes", getMemberTypes());
+		model.addAttribute("cars", getCars());
 		
 		return "member/join"; 
 	}
@@ -38,8 +39,11 @@ public class MemberJoinController {
 		
 		model.addAttribute("editors", getEditors());
 		model.addAttribute("memberTypes", getMemberTypes());
+		model.addAttribute("cars", getCars());
 		
-		return "member/join";
+		System.out.println(member);
+		
+		return "redirect:/member/login"; // HttpServletResponse::sendRedirect
 	}
 	
 	public List<Item> getEditors() {
@@ -56,6 +60,14 @@ public class MemberJoinController {
 		items.add(new Item("개인회원", "private"));
 		items.add(new Item("사업자회원", "business"));
 		
+		return items;
+	}
+	
+	public List<Item> getCars() {
+		List<Item> items = new ArrayList<>();
+		items.add(new Item("아반떼", "Avante"));
+		items.add(new Item("소나타", "Sonata"));
+		items.add(new Item("그랜져", "Gran"));
 		return items;
 	}
 }

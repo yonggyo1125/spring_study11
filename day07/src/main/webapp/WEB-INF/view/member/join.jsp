@@ -13,7 +13,7 @@
 	<dl>
 		<dt>아이디</dt>
 		<dd>
-			<form:input path="userId" />
+			<form:input path="userId" cssClass="userId" cssStyle="color: red;"/>
 		</dd>
 	</dl>
 	<dl>
@@ -46,9 +46,26 @@
 			<form:checkboxes items="${editors}" path="editor" itemValue="value" itemLabel="title" />
 		</dd>
 	</dl>
+	<dl>
+		<dt>주소</dt>
+		<dd>
+			<form:input path="address.zipcode" placeholder="우편번호" />
+			<form:input path="address.addr1" placeholder="주소" />
+			<form:input path="address.addr2" placeholder="나머지 주소" />
+		</dd>
+	</dl>
+	<dl>
+		<dt>자동차</dt>
+		<dd>
+			<form:select path="car">
+				<form:option value="" label="선택하세요" />
+				<form:options items="${cars}" itemLabel="title" itemValue="value" />
+			</form:select>
+		</dd>
+	</dl>
 	<div>
-		<form:checkbox path="agree" />
-		약관에 동의하세요.
+		<form:checkbox path="agree" value="true" label="약관에 동의하세요" />
+		 
 	</div>
 	<button type="submit">가입하기</button>
 </form:form>

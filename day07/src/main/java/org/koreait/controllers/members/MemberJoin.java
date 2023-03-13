@@ -10,6 +10,9 @@ public class MemberJoin {
 	private String userNm;
 	private List<String> hobby;
 	private List<String> editor;
+	private Address address;
+	private String car;
+	
 	
  	private boolean agree;
 	
@@ -76,11 +79,29 @@ public class MemberJoin {
 	public void setAgree(boolean agree) {
 		this.agree = agree;
 	}
+	
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getCar() {
+		return car;
+	}
+
+	public void setCar(String car) {
+		this.car = car;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberJoin [memberType=" + memberType + ", userId=" + userId + ", userPw=" + userPw + ", userPwRe="
-				+ userPwRe + ", userNm=" + userNm + ", hobby=" + hobby + ", editor=" + editor + ", agree=" + agree
-				+ "]";
+				+ userPwRe + ", userNm=" + userNm + ", hobby=" + hobby + ", editor=" + editor + ", address=" + address
+				+ ", agree=" + agree + "]";
 	}
 }
