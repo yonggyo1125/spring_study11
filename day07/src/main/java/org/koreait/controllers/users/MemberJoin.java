@@ -11,6 +11,7 @@ public class MemberJoin {
 	private String email;
 	private String mobile;
 	private LocalDateTime regDt;
+	private boolean agree;
 	
 	public int getUserNo() {
 		return userNo;
@@ -74,6 +75,14 @@ public class MemberJoin {
 	
 	public void setRegDt(LocalDateTime regDt) {
 		this.regDt = regDt;
+	}
+
+	public boolean isAgree() {
+		return agree;
+	}
+
+	public void setAgree(boolean agree) {
+		this.agree = agree;
 	}
 
 	@Override
