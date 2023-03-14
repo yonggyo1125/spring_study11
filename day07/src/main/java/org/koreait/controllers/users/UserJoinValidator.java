@@ -1,5 +1,7 @@
 package org.koreait.controllers.users;
 
+import org.koreait.models.member.MemberDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -7,7 +9,10 @@ import org.springframework.validation.Validator;
 
 @Component
 public class UserJoinValidator implements Validator {
-
+	
+	@Autowired
+	private MemberDao memberDao;
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 
@@ -26,6 +31,10 @@ public class UserJoinValidator implements Validator {
 		 * 2. 비밀번호, 비밀번호 확인이 일치
 		 * 3. 휴대전화번호가 있으면 형식 체크
 		 */
+		// 1. 아이디의 중복여부
+		if (userId != null && !userId.isBlank() && memberDao.isExists(userId)) {
+			errors.rejectValue("userId", "dupUserId", "이미 등록된 아이디 입니다.");
+		}
 		
 		// 2. 비밀번호, 비밀번호 확인이 일치
 		if (userPw != null && !userPw.isBlank() && userPwRe != null && !userPw.equals(userPwRe)) {
