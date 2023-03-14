@@ -28,8 +28,24 @@ public class UserJoinValidator implements Validator {
 		 */
 		
 		// 2. 비밀번호, 비밀번호 확인이 일치
-		if (userPw != null && userPwRe != null && !userPw.equals(userPwRe)) {
+		if (userPw != null && !userPw.isBlank() && userPwRe != null && !userPw.equals(userPwRe)) {
 			errors.rejectValue("userPw", "passwordIncorrect", "비밀번호가 일치하지 않습니다.");
+		}
+		
+		// 3. 휴대전화번호가 있으면 형식 체크
+		/**
+		 * 010-0000-0000
+		 * 010.0000.0000
+		 * [^0-9]
+		 * [^\d]
+		 * \D
+		 */
+		if (mobile != null && !mobile.isBlank()) {
+			 mobile = mobile.replaceAll("\\D", "");
+			 String pattern = "^01[016]\\d{3,4}\\d{4}$";
+			 if (!mobile.matches(pattern)) { // 휴대전화번호 형식 아닌 경우 
+				 errors.rejectValue("mobile", "wrongCellPhoneNum", "휴대전화번호 형식이 아닙니다.");
+			 }
 		}
 		
 	}

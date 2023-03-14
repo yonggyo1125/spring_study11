@@ -60,6 +60,7 @@
 		</dt>
 		<dd>
 			<form:input path="mobile" />
+			<form:errors path="mobile" element="div" />
 		</dd>
 	</dl>
 	<div>
