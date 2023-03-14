@@ -14,8 +14,8 @@
 			<spring:message code="user.userId" />
 		</dt>
 		<dd>
-			<form:input path="userId" />
-			<form:errors path="userId" />
+			<form:input path="userId" cssErrorClass="error" />
+			<form:errors path="userId" element="div" />
 		</dd>
 	</dl>
 	<dl>
@@ -24,7 +24,7 @@
 		</dt>
 		<dd>
 			<form:password path="userPw" />
-			<form:errors path="userPw" />
+			<form:errors path="userPw" element="div" />
 		</dd>
 	</dl>
 	<dl>
@@ -33,7 +33,7 @@
 		</dt>
 		<dd>
 			<form:password path="userPwRe" />
-			<form:errors path="userPwRe" />
+			<form:errors path="userPwRe" element="div" />
 		</dd>
 	</dl>
 	<dl>
@@ -42,7 +42,7 @@
 		</dt>
 		<dd>
 			<form:input path="userNm" />
-			<form:errors path="userNm" />
+			<form:errors path="userNm" element="div" />
 		</dd>
 	</dl>
 	<dl>
@@ -51,6 +51,7 @@
 		</dt>
 		<dd>
 			<form:input path="email" />
+			<form:errors path="email" element="div" />
 		</dd>
 	</dl>
 	<dl>
@@ -63,6 +64,7 @@
 	</dl>
 	<div>
 		<form:checkbox path="agree" value="true" label="${agree}" />
+		<form:errors path="agree" element="div" />
 	</div>
 	<button type="submit">가입하기</button>
 </form:form>

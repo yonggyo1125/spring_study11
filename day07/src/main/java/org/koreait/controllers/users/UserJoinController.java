@@ -1,5 +1,7 @@
 package org.koreait.controllers.users;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +26,7 @@ public class UserJoinController {
 	}
 	
 	@PostMapping
-	public String joinPs(MemberJoin memberJoin, Errors errors) {
+	public String joinPs(@Valid MemberJoin memberJoin, Errors errors) {
 		validator.validate(memberJoin, errors);
 		if (errors.hasErrors()) {
 			return "user/join";

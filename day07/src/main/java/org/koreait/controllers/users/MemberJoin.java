@@ -2,15 +2,36 @@ package org.koreait.controllers.users;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class MemberJoin {
 	private int userNo;
+	
+	@NotBlank
+	@Size(min=6, message="아이디는 6자리 이상 입력하세요.")
 	private String userId;
+	
+	@NotBlank
+	@Size(min=8, max=18, message="비밀번호는 8자리 이상 18이하 입력하세요.")
 	private String userPw;
+	
+	@NotBlank
 	private String userPwRe;
+	
+	@NotBlank
 	private String userNm;
+	
+	@Email(message="이메일 형식이 아닙니다.")
 	private String email;
+	
 	private String mobile;
 	private LocalDateTime regDt;
+	
+	@AssertTrue(message="약관에 동의하세요.")
 	private boolean agree;
 	
 	public int getUserNo() {
