@@ -76,7 +76,7 @@ public class MemberDao {
 	
 	public boolean isExists(String userId) {
 		String sql = "SELECT COUNT(*) FROM member WHERE userId = ?";
-		int cnt = jdbcTemplate.queryForObject(sql, Integer.class);
+		int cnt = jdbcTemplate.queryForObject(sql, Integer.class, userId);
 		
 		return cnt > 0;
 	}

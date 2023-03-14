@@ -14,6 +14,7 @@ public class DbConfig {
 	public DataSource dataSource() {
 		String url = "jdbc:mysql://localhost:3306/springdb";
 		DataSource ds = new DataSource();
+		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		ds.setUrl(url);
 		ds.setUsername("root");
 		ds.setPassword("aA!123456");
