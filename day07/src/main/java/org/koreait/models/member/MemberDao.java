@@ -89,6 +89,13 @@ public class MemberDao {
 		return total;
 	}
 	
+	public boolean delete(String userId) {
+		String sql = "DELETE FROM member WHERE userId = ?";
+		int cnt = jdbcTemplate.update(sql, userId);
+		
+		return cnt > 0;
+	}
+	
 	public Member mapper(ResultSet rs, int num) throws SQLException {
 		Member member = new Member();
 		member.setUserNo(rs.getInt("userNo"));
