@@ -24,14 +24,16 @@ public class MemberDao {
 	}
 	
 	public int insert(Member member) {
-		String sql = "INSERT INTO member (userId, userPw, userNm) VALUES (?,?,?)";
+		String sql = "INSERT INTO member (userId, userPw, userNm, email, mobile) VALUES (?,?,?,?,?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		int cnt = jdbcTemplate.update(c -> {
 				
 				PreparedStatement pstmt = c.prepareStatement(sql, new String[] {"userNo"});
 				pstmt.setString(1, member.getUserId());
 				pstmt.setString(2, member.getUserPw());
-				pstmt.setString(3,  member.getUserNm());
+				pstmt.setString(3, member.getUserNm());
+				pstmt.setString(4, member.getEmail());
+				pstmt.setString(5, member.getMobile());
 				return pstmt;
 			}, keyHolder);
 		

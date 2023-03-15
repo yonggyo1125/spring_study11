@@ -9,8 +9,13 @@ public class UserJoinService {
 	private MemberDao memberDao;
 	
 	public boolean join(Member member) {
+		if (member == null) {
+			throw new UserJoinFailException("잘못된 접근입니다.");
+		}
 		
-		return true;
+		int cnt = memberDao.insert(member);
+		
+		return cnt > 0;
 	}
 	
 	@Autowired
