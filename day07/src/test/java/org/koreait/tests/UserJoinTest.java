@@ -83,9 +83,38 @@ class UserJoinTest {
 		 *   4. bcrypt로 비번 검증도 일치하는지 체크  
 		 */
 		Member member = getMember();
+		String userPw = member.getUserPw();
+		String userId = member.getUserId();
 		userJoinService.join(member);
 		
-		Member newMember = memberDao.get(member.getUserId());
+		Member newMember = memberDao.get(userId);
 		
+		String newUserPw = newMember.getUserPw();
+		// 조회한 회원 비번과 가입할때 비번 다른지
+		assertEquals(userPw.equals(newUserPw), false);
+		
+		// bcrypt로 비번 검증도 일치하는지 체크
+		boolean matched = BCrypt.checkpw(userPw, newUserPw);
+		assertEquals(matched, true);
+		
+	}
+	
+	@Test
+	@DisplayName("생성된 해시와 123456 비번이 일치하는지 체크")
+	public void hashEqualTest() {
+		String hash= "$2a$12$pRPw8mroGeZdqQPuoxG22OAshmdngF11.oA93wwW/lZGXq/FRzW3a";
+		String passwd = "123456";
+		boolean matched = BCrypt.checkpw(passwd, hash);
+		assertEquals(matched, true);
+	}
+	
+	@Test
+	@DisplayName("회원ID - user1678878713312 DB 조회시, 실 해시와 일치 테스트")
+	public void hashEqualTest2() {
+		String userId = "user1678878713312";
+		String hash= "$2a$12$pRPw8mroGeZdqQPuoxG22OAshmdngF11.oA93wwW/lZGXq/FRzW3a";
+		Member member = memberDao.get(userId);
+		
+		assertEquals(member.getUserPw(), hash);
 	}
 }

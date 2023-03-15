@@ -3,6 +3,8 @@ package org.koreait.models.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 @Service
 public class UserJoinService {
 	
@@ -12,6 +14,11 @@ public class UserJoinService {
 		if (member == null) {
 			throw new UserJoinFailException("잘못된 접근입니다.");
 		}
+		
+		// 비밀번호 해시 처리
+		String userPw = member.getUserPw();
+		String hash = BCrypt.hashpw(userPw, BCrypt.gensalt(12));
+		member.setUserPw(hash);
 		
 		int cnt = memberDao.insert(member);
 		
