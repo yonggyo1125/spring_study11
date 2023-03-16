@@ -2,6 +2,8 @@ package org.koreait.controllers.users;
 
 import javax.validation.Valid;
 
+import org.koreait.models.member.Member;
+import org.koreait.models.member.UserJoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserJoinController {
 	
 	private UserJoinValidator validator;
+	private UserJoinService service;
+	
+	public UserJoinController(UserJoinService service) {
+		this.service = service;
+	}
 	
 	@GetMapping
 	public String join(Model model) {
@@ -29,6 +36,21 @@ public class UserJoinController {
 	public String joinPs(@Valid MemberJoin memberJoin, Errors errors) {
 		validator.validate(memberJoin, errors);
 		if (errors.hasErrors()) {
+			return "user/join";
+		}
+		
+		try {
+			Member member = new Member();
+			member.setUserId(memberJoin.getUserId());
+			member.setUserPw(memberJoin.getUserPw());
+			member.setUserNm(memberJoin.getUserNm());
+			member.setEmail(memberJoin.getEmail());
+			member.setMobile(memberJoin.getMobile());
+			
+			service.join(member);
+			
+		} catch (RuntimeException e) {
+			errors.reject("joinError", e.getMessage());
 			return "user/join";
 		}
 		
