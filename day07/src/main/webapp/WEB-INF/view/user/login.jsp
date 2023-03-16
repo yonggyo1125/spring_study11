@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:url var="action" value="/user/login" />
-<form:form method="post" action="${action}" modelAttribute="memberJoin">
+<form:form method="post" action="${action}" modelAttribute="memberLogin">
 	<form:errors element="div" />
 	<dl>
 		<dt>
@@ -24,7 +24,8 @@
 		</dd>
 	</dl>
 	<div>
-		<form:checkbox path="savedId" value="true" label="<spring:message code='user.savedId' />" />
+		<spring:message var="savedId" code="user.savedId" />
+		<form:checkbox path="savedId" value="true" label="${savedId}" />
 	</div>
 	<button type="submit">
 		<spring:message code="user.login" />

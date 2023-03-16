@@ -6,6 +6,7 @@ import org.koreait.controllers.users.MemberLogin;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
 
 @Service
 public class UserLoginService {
@@ -20,6 +21,14 @@ public class UserLoginService {
 	}
 	
 	public void login(MemberLogin member) {
+		login(member, null);
+	}
+	
+	public void login(MemberLogin member, Errors errors) {
+		if (errors.hasErrors()) { // 커맨드 객체 @Bean validation 검증 실패시
+			return;
+		}
+		
 		if (member == null) {
 			throw new UserLoginFailException("잘못된 접근입니다.");
 		}
