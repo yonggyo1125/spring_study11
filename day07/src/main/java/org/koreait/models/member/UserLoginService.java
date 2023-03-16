@@ -25,7 +25,7 @@ public class UserLoginService {
 	}
 	
 	public void login(MemberLogin member, Errors errors) {
-		if (errors.hasErrors()) { // 커맨드 객체 @Bean validation 검증 실패시
+		if (errors != null && errors.hasErrors()) { // 커맨드 객체 @Bean validation 검증 실패시
 			return;
 		}
 		
