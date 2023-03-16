@@ -19,7 +19,7 @@
 			<spring:message code="user.userPw" />
 		</dt>
 		<dd>
-			<form:input path="userPw" />
+			<form:password path="userPw" />
 			<form:errors path="userPw" element="div" />
 		</dd>
 	</dl>

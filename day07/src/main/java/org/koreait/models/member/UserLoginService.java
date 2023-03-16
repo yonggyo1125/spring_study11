@@ -1,5 +1,7 @@
 package org.koreait.models.member;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.koreait.controllers.users.MemberLogin;
@@ -15,6 +17,9 @@ public class UserLoginService {
 	
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private HttpServletResponse response;
 	
 	public UserLoginService(MemberDao memberDao) {
 		this.memberDao = memberDao;
@@ -57,5 +62,14 @@ public class UserLoginService {
 		
 		/** 로그인 처리 */
 		session.setAttribute("member", mem);
+		
+		Cookie cookie = new Cookie("savedId", mem.getUserId());
+		if (member.isSavedId()) { // 아이디 저장
+			cookie.setMaxAge(60 * 60 * 24 * 365); // 유효시간은 1년 
+		} else {
+			cookie.setMaxAge(0);
+		}
+		
+		response.addCookie(cookie);
 	}
  }
