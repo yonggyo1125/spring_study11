@@ -5,10 +5,7 @@
 <c:url var="action" value="/user/join" />
 <spring:message var="agree" code="user.agree" />
 <form:form method="post" action="${action}" modelAttribute="memberJoin">
-	<spring:message code="loginMessage">
-		<spring:argument value="사용자01" />
-		<spring:argument value="user01" />
-	</spring:message>
+	<form:errors element="div" />
 	<dl>
 		<dt>
 			<spring:message code="user.userId" />
