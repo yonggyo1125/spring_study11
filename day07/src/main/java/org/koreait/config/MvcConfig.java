@@ -1,11 +1,14 @@
 package org.koreait.config;
 
 import org.koreait.interceptors.MemberOnlyInterceptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -18,7 +21,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @Import({DbConfig.class, ServiceConfig.class})
 public class MvcConfig implements WebMvcConfigurer {
-
+	
+	@Value("${file.uploadPath}")
+	private String fileUploadPath;
+	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
@@ -39,7 +45,7 @@ public class MvcConfig implements WebMvcConfigurer {
 			.addResourceLocations("classpath:/static/");
 		
 		registry.addResourceHandler("/uploads/**")
-			.addResourceLocations("file:///D://uploads/");
+			.addResourceLocations("file:///" + fileUploadPath);
 	}
 
 	@Override
@@ -70,5 +76,12 @@ public class MvcConfig implements WebMvcConfigurer {
 	}
 	
 	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer properties() {
+		
+		PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
+		conf.setLocations(new ClassPathResource("application.properties"));
+		return conf;
+	}
 
 }
