@@ -35,7 +35,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+		registry.addResourceHandler("/**")
+			.addResourceLocations("classpath:/static/");
+		
+		registry.addResourceHandler("/uploads/**")
+			.addResourceLocations("file:///D://uploads/");
 	}
 
 	@Override
@@ -64,5 +68,7 @@ public class MvcConfig implements WebMvcConfigurer {
 	public MemberOnlyInterceptor memberOnlyInterceptor() {
 		return new MemberOnlyInterceptor();
 	}
+	
+	
 
 }
