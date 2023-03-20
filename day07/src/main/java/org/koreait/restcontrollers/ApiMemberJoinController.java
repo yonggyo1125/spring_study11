@@ -1,10 +1,19 @@
 package org.koreait.restcontrollers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.koreait.controllers.users.MemberJoin;
+import org.koreait.models.member.Member;
+import org.koreait.models.member.MemberDao;
+import org.koreait.models.member.UserJoinService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,24 +24,44 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ApiMemberJoinController {
 	
-	@PostMapping("/member/join")
-	public void join(@RequestBody @Valid MemberJoin memberJoin, Errors errors) {
-		boolean result = false;
-		if (!result) {
-			throw new RuntimeException("예외 발생!!!!");
-		}
-	}
+	@Autowired
+	private UserJoinService service;
 	
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<JSONResult<Object>> errorHandler(Exception e) {
-		// 상태 코드, 헤더, 바디
-		JSONResult<Object> jsonResult = new JSONResult<>();
-		jsonResult.setSuccess(false);
-		jsonResult.setMessage(e.getMessage());
+	@Autowired
+	private MemberDao memberDao;
+	
+	@PostMapping("/member/join")
+	public ResponseEntity<JSONResult<Member>> join(@RequestBody @Valid MemberJoin memberJoin, Errors errors) {
 		
+		if (errors.hasErrors()) {
+			List<ObjectError> errs = errors.getAllErrors();
+			String msg = errs.stream().map(e -> {
+				String message = e.getDefaultMessage();
+				
+				return message == null ? e.getCode() : message;  
+			}).collect(Collectors.joining(","));
+			
+			throw new RuntimeException(msg);
+		}
 		
-		return ResponseEntity.status(500).body(jsonResult);
-	}
+		Member member = new Member();
+		member.setUserId(memberJoin.getUserId());
+		member.setUserPw(memberJoin.getUserPw());
+		member.setUserNm(memberJoin.getUserNm());
+		member.setEmail(memberJoin.getEmail());
+		member.setMobile(memberJoin.getMobile());
+		
+		boolean result = service.join(member);
+		if (!result) { // 가입 실패 
+			throw new RuntimeException("가입 실패!");
+		}
+		
+		JSONResult<Member> jsonResult = new JSONResult<>();
+		jsonResult.setSuccess(true);
+		jsonResult.setData(member);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(jsonResult);
+ 	}
  }
 
 
