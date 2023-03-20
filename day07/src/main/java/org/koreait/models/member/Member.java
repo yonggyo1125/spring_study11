@@ -2,14 +2,23 @@ package org.koreait.models.member;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Member {
 	private int userNo;
 	private String userId;
+	
+	@JsonIgnore
 	private String userPw;
 	private String userNm;
 	private String email;
 	private String mobile;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime regDt;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime modDt;
 	
 	public String getEmail() {
