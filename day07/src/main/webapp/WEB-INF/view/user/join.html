@@ -4,6 +4,9 @@
 		<title>회원가입!</title>
 	</head>
 	<body>
+		<div th:text="${@cUtil.toConvert(title)}"></div>
+		<div th:text="${title}"></div>
+		
 		<a href="#" th:href="@{/user/login(title=${title},param=1,param=2)}">로그인</a>
 		<br>
 		<a th:href="@{/user/login/{id}/{id2}(id=${title},id2=${title})}">링크1</a>
