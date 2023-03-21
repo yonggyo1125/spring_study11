@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>연습!</title>
+	</head>
+	<body>
+		<th:block th:utext="${title}"></th:block>
+		<th:block th:object="${member}">
+		<dl>
+			<dt th:text="#{user.userId}"></dt>
+			<dd th:text="*{userId}"></dd>
+		</dl>
+		<dl>
+			<dt th:text="#{user.userNm}"></dt>
+			<dd th:text="*{userNm}"></dd>
+		</dl>
+		</th:block>
+	</body>
+</html>

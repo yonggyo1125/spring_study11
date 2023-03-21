@@ -20,10 +20,22 @@ public class UsersController {
 	private MemberDao memberDao;
 	
 	@GetMapping("/users")
-	public String users(@Valid Users users, Errors errors) {
+	public String users(Model model) {
 		
-		System.out.println(users);
+		List<Member> members = memberDao.gets();
+		
+		model.addAttribute("members", members);
+		
 		return "user/users";
+	}
+	
+	@GetMapping("/user/info")
+	public String userInfo(Model model) {
+		Member member = memberDao.get("user01");
+		model.addAttribute("member", member);
+		model.addAttribute("title", "<h1>제목!!!</h1>");
+		
+		return "user/info";
 	}
 	
 	@ResponseBody

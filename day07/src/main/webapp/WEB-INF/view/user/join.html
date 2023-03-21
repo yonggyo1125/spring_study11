@@ -4,46 +4,50 @@
 		<title>회원가입!</title>
 	</head>
 	<body>
-		<form method="post" action="">
+		<a href="#" th:href="@{/user/login(title=${title},param=1,param=2)}">로그인</a>
+		<br>
+		<a th:href="@{/user/login/{id}/{id2}(id=${title},id2=${title})}">링크1</a>
+		
+		<form method="post" th:action="@{/user/join}" action="#">
 			<dl>
-				<dt th:text="${title}">아이디</dt>
+				<dt th:text="#{user.userId}">ID</dt>
 				<dd>
 					<input type="text" name="userId">
 				</dd>
 			</dl>
 			<dl>
-				<dt>비밀번호</dt>
+				<dt th:text="#{user.userPw}"></dt>
 				<dd>
 					<input type="password" name="userPw">
 				</dd>
 			</dl>
 			<dl>
-				<dt>비밀번호 확인</dt>
+				<dt th:text="#{user.userPwRe}"></dt>
 				<dd>
 					<input type="password" name="userPwRe">
 				</dd>				
 			</dl>
 			<dl>
-				<dt>회원명</dt>
+				<dt th:text="#{user.userNm}">회원명</dt>
 				<dd>
 					<input type="text" name="userNm">
 				</dd>
 			</dl>
 			<dl>
-				<dt>이메일</dt>
+				<dt th:text="#{user.email}">이메일</dt>
 				<dd>
 					<input type="email" name="email">
 				</dd>
 			</dl>
 			<dl>
-				<dt>휴대전화번호</dt>
+				<dt th:text="#{user.mobile}">휴대전화번호</dt>
 				<dd>
 					<input type="text" name="mobile">
 				</dd>
 			</dl>
 			<div>
 				<input type="checkbox" name="agree" value="true" id="agree">
-				<label for="agree">약관에 동의합니다.</label>
+				<label for="agree" th:text="#{user.agree}"></label>
 			</div>
 			<button type="submit">가입하기</button>
 		</form>
