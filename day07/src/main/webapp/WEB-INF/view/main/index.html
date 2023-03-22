@@ -3,6 +3,14 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/main}">
 	
+	<th:block layout:fragment="addCss">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main/test.css}">
+	</th:block>
+	
+	<th:block layout:fragment="addScript">
+	<script th:src="@{/js/main/test.js}"></script>
+	</th:block>
+	
 	<main layout:fragment="content">
 		<th:block th:if="${session.member == null}">
 			<a th:href="@{/user/login}">로그인</a>
