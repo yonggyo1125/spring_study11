@@ -27,7 +27,6 @@ public class UserJoinController {
 	public String join(Model model) {
 		
 		MemberJoin memberJoin = new MemberJoin();
-		model.addAttribute("title", "abc");
 		model.addAttribute("memberJoin", memberJoin);
 		
 		return "user/join"; 

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>연습</title>
-	</head>
-	<body>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main}">
+	
+	<main layout:fragment="content">
 		<th:block th:if="${session.member == null}">
 			<a th:href="@{/user/login}">로그인</a>
 			<a th:href="@{/user/join}">회원가입</a>
@@ -12,5 +12,5 @@
 			<th:block th:text="${#messages.msg('loginMessage',session.member.userNm, session.member.userId)}"></th:block>
 			<a th:href="@{/user/logout}">로그아웃</a>
 		</th:block>
-	</body>
+	</main>
 </html>

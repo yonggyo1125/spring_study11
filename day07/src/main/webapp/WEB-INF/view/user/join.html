@@ -3,54 +3,59 @@
 	<head>
 		<title>회원가입!</title>
 	</head>
-	<body>
-		<div th:text="${@cUtil.toConvert(title)}"></div>
-		<div th:text="${title}"></div>
-		
+	<body>		
 		<a href="#" th:href="@{/user/login(title=${title},param=1,param=2)}">로그인</a>
 		<br>
 		<a th:href="@{/user/login/{id}/{id2}(id=${title},id2=${title})}">링크1</a>
 		
-		<form method="post" th:action="@{/user/join}" action="#">
+		<form method="post" th:action="@{/user/join}" action="#" th:object="${memberJoin}">
+			<div th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="errors"></div>
 			<dl>
 				<dt th:text="#{user.userId}">ID</dt>
 				<dd>
-					<input type="text" name="userId">
-				</dd>
+					<input type="text" name="userId" th:field="*{userId}">
+					<div th:each="err : ${#fields.errors('userId')}" class="errors" th:text="${err}"></div>
+				</dd> 
 			</dl>
 			<dl>
 				<dt th:text="#{user.userPw}"></dt>
 				<dd>
-					<input type="password" name="userPw">
+					<input type="password" name="userPw" th:field="*{userPw}">
+					<div th:each="err : ${#fields.errors('userPw')}" th:text="${err}" class="errors"></div>
 				</dd>
 			</dl>
 			<dl>
 				<dt th:text="#{user.userPwRe}"></dt>
 				<dd>
-					<input type="password" name="userPwRe">
+					<input type="password" name="userPwRe" th:field="*{userPwRe}">
+					<div th:each="err : ${#fields.errors('userPwRe')}" th:text="${err}" class="errors"></div>
 				</dd>				
 			</dl>
 			<dl>
 				<dt th:text="#{user.userNm}">회원명</dt>
 				<dd>
-					<input type="text" name="userNm">
+					<input type="text" name="userNm" th:field="*{userNm}">
+					<div th:each="err : ${#fields.errors('userNm')}" th:text="${err}" class="errors"></div>
 				</dd>
 			</dl>
 			<dl>
 				<dt th:text="#{user.email}">이메일</dt>
 				<dd>
-					<input type="email" name="email">
+					<input type="email" name="email" th:field="*{email}">
+					<div th:each="err : ${#fields.errors('email')}" th:text="${err}" class="errors"></div>
 				</dd>
 			</dl>
 			<dl>
 				<dt th:text="#{user.mobile}">휴대전화번호</dt>
 				<dd>
-					<input type="text" name="mobile">
+					<input type="text" name="mobile" th:field="*{mobile}">
+					<div th:each="err : ${#fields.errors('mobile')}" th:text="${err}" class="errors"></div>
 				</dd>
 			</dl>
 			<div>
-				<input type="checkbox" name="agree" value="true" id="agree">
+				<input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
 				<label for="agree" th:text="#{user.agree}"></label>
+				<div th:each="err : ${#fields.errors('agree')}" th:text="${err}" class="errors"></div>
 			</div>
 			<button type="submit">가입하기</button>
 		</form>
